@@ -4,7 +4,7 @@ on: push
 jobs:
   test:
     name: Test clang-${{ matrix.clang }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     strategy:
       matrix:
@@ -22,7 +22,7 @@ jobs:
     - name: Install clang
       run: |
         wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key 2>/dev/null | sudo apt-key add -
-        echo 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-${{ matrix.clang }} main' | sudo tee /etc/apt/sources.list.d/clang.list
+        echo 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-${{ matrix.clang }} main' | sudo tee /etc/apt/sources.list.d/clang.list
         # Only update the llvm repo, this is a lot faster.
         sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/clang.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
         sudo apt-get install -y clang-${{ matrix.clang }}
