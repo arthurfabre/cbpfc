@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        clang: ["6.0", "7", "8", "9"]
+        clang: ["9", "14", "16"]
 
     steps:
     - name: Set up Go 1.x
